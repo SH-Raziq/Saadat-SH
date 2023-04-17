@@ -226,7 +226,7 @@ def passmenu():
 	elif passmen in ['2','02']:
 		Afghano()
 	elif passmen in ['3','03']:
-		Afghano2()
+		Saadat()
 	else:
 		passmenu()
 		
